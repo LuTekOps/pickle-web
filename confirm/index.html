@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- The URL carries a one-time token: never leak it to other origins. -->
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src https://glebczptvyoojznohtsc.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="theme-color" content="#33802a">
+  <title>Pickle · Confirm email</title>
+  <link rel="stylesheet" href="../assets/pickle.css">
+</head>
+<body>
+<main>
+  <div class="brand" aria-hidden="true">
+    <svg viewBox="34 16.5 40 71"><use href="#pickle"/></svg>
+    Pickle
+  </div>
+
+  <svg id="mascot" class="mascot" viewBox="30 14 52 76" role="img" aria-hidden="true">
+    <defs>
+      <g id="pickle">
+        <path d="M50.5,25.5 Q53,17.5 58,19 Q57,22 57.5,25.5 Z" fill="#558b2f"/>
+        <path d="M54,24 C64.5,24 70.5,32 69.5,44 L67.5,68 C66.5,80 60.5,85.5 53.5,85.5 C45,85.5 39.5,79.5 39.5,68 L38.5,44 C37.5,32 43.5,24 54,24 Z" fill="#7cb342" stroke="#2e5a1b" stroke-width="2.4"/>
+        <path d="M44,36 C44,31 47,28.5 51,28" fill="none" stroke="#c5e1a5" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M41.9,62 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0 Z M62.9,40 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0 Z M61.4,66 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0 Z M44.6,75 a1.4,1.4 0 1,0 2.8,0 a1.4,1.4 0 1,0 -2.8,0 Z M56.6,78 a1.4,1.4 0 1,0 2.8,0 a1.4,1.4 0 1,0 -2.8,0 Z M41.7,49 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0 Z" fill="#558b2f"/>
+        <path d="M43.5,47 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z M55,47 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z" fill="#fff" stroke="#2e5a1b" stroke-width="1.2"/>
+        <path d="M47.7,45.2 a2.3,2.3 0 1,0 4.6,0 a2.3,2.3 0 1,0 -4.6,0 Z M59.2,45.2 a2.3,2.3 0 1,0 4.6,0 a2.3,2.3 0 1,0 -4.6,0 Z" fill="#1b2a12"/>
+        <path d="M44.5,39.5 Q48.5,37 52.5,39 M56,36.5 Q60,33.5 64,35.5" fill="none" stroke="#2e5a1b" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+    </defs>
+    <use href="#pickle"/>
+    <path id="mouth-happy" d="M49.5,58 Q55,62.5 60.5,57" fill="none" stroke="#2e5a1b" stroke-width="2" stroke-linecap="round"/>
+    <path id="mouth-sad" d="M49.5,61 Q55,56.5 60.5,61" fill="none" stroke="#2e5a1b" stroke-width="2" stroke-linecap="round" hidden/>
+    <g id="badge" hidden>
+      <circle cx="69" cy="76" r="9.5" fill="#fff" stroke="#2e5a1b" stroke-width="1.6"/>
+      <path d="M64.2,76.3 L67.8,79.8 L74,72.6" fill="none" stroke="#2e7d32" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+
+  <!-- 1. Token-hash link (custom template): redeemed only on tap, so link scanners cannot burn it -->
+  <section id="view-confirm" hidden>
+    <h1 data-i18n="confirmTitle">Almost there!</h1>
+    <p data-i18n="confirmBody">Tap the button to activate your Pickle account.</p>
+    <div class="alert" id="form-error" role="alert" hidden></div>
+    <button class="button" id="submit" type="button">
+      <span class="spinner" hidden></span><span data-i18n="confirm">Activate my account</span>
+    </button>
+  </section>
+
+  <!-- 2. Success -->
+  <section id="view-done" hidden>
+    <h1 data-i18n="doneTitle">Your account is active!</h1>
+    <p data-i18n="doneBody">Go back to the Pickle app and sign in with your email and password. Polls, groups and karma are now unlocked.</p>
+    <p data-i18n="doneClose">You can close this page.</p>
+  </section>
+
+  <!-- 3. Link expired, already used or broken -->
+  <section id="view-invalid" hidden>
+    <h1 data-i18n="invalidTitle">This link doesn't work anymore</h1>
+    <p data-i18n="invalidBody">Confirmation links can only be used once and expire after one hour. If you already confirmed, just sign in. Otherwise request a new link:</p>
+    <ol class="steps">
+      <li data-i18n="step1">Open the Pickle app.</li>
+      <li data-i18n="step2">Tap “Resend email” in the yellow box on the start screen, or try to sign in.</li>
+      <li data-i18n="step3">Open the new link from the email.</li>
+    </ol>
+  </section>
+
+  <noscript><p>Please enable JavaScript to confirm your email. / Bitte aktiviere JavaScript, um deine E-Mail zu bestätigen.</p></noscript>
+  <p class="footer" data-i18n="footer">Pickle · Confirm email</p>
+</main>
+<script src="confirm.js"></script>
+</body>
+</html>
