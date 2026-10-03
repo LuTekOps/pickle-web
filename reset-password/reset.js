@@ -1,8 +1,12 @@
 // Pickle password reset page.
 //
-// The recovery email links here with `?token_hash=…&type=recovery` (see supabase/templates/recovery.html).
-// The token is only redeemed when the user submits the form, so link scanners and mail previews that
-// open the URL cannot burn the one-time token. Then:
+// Two kinds of links arrive here:
+// - Default Supabase email (free tier without custom SMTP, templates cannot be changed): the link goes
+//   through /auth/v1/verify, which redeems the token and redirects here with `#access_token=…&type=recovery`.
+//   The page then only needs the PUT /user and logout steps below.
+// - Custom template (needs custom SMTP, see supabase/templates/recovery.html): `?token_hash=…&type=recovery`.
+//   The token is only redeemed when the user submits the form, so link scanners and mail previews that
+//   open the URL cannot burn the one-time token. Then:
 //   POST /auth/v1/verify {token_hash, type: "recovery"}  -> short-lived session (= supabase.auth.verifyOtp)
 //   PUT  /auth/v1/user   {password}                      -> new password       (= supabase.auth.updateUser)
 //   POST /auth/v1/logout?scope=local                     -> ends this session  (= supabase.auth.signOut({scope:"local"}))
@@ -88,6 +92,9 @@
   // ---- Read the one-time token, then drop it from the address bar (history, screenshots, sharing).
   const tokenHash = query.get('token_hash');
   const type = query.get('type') || 'recovery';
+  // Default Supabase template (free tier, no custom SMTP): /auth/v1/verify already redeemed the token and
+  // redirected here with the recovery session in the fragment (#access_token=…&type=recovery).
+  const fragmentToken = fragment.get('type') === 'recovery' ? fragment.get('access_token') : null;
   const linkError = query.get('error_code') || query.get('error') || fragment.get('error_code') || fragment.get('error');
   if (tokenHash || location.hash) {
     const clean = new URL(location.href);
@@ -110,7 +117,7 @@
     if (heading && view !== 'view-form') { heading.tabIndex = -1; heading.focus(); }
   }
 
-  if (!tokenHash || type !== 'recovery' || linkError) {
+  if ((!tokenHash && !fragmentToken) || type !== 'recovery' || linkError) {
     show('view-invalid');
     return;
   }
@@ -149,7 +156,7 @@
   confirm.addEventListener('input', () => { setFieldError('field-confirm', 'confirm-hint', null); setFormError(null); });
 
   // ---- Auth API
-  let accessToken = null; // recovery session, memory only
+  let accessToken = fragmentToken; // recovery session, memory only
   let tokenUsed = false;
 
   async function api(path, { method = 'POST', body, token } = {}) {
