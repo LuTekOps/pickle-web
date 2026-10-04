@@ -54,13 +54,81 @@
       step3: 'Öffne den neuen Link aus der E-Mail.',
       footer: 'Pickle · E-Mail bestätigen',
     },
+    fr: {
+      title: "Pickle · Confirmer l’e-mail",
+      confirmTitle: "Presque fini !",
+      confirmBody: "Appuie sur le bouton pour activer ton compte Pickle.",
+      confirm: "Activer mon compte",
+      errorNetwork: "Pas de connexion. Vérifie ton internet et réessaie.",
+      errorRateLimit: "Trop de tentatives. Attends un instant et réessaie.",
+      doneTitle: "Ton compte est actif !",
+      doneBody: "Retourne dans l’app Pickle et connecte-toi avec ton e-mail et ton mot de passe. Sondages, groupes et karma sont débloqués.",
+      doneClose: "Tu peux fermer cette page.",
+      invalidTitle: "Ce lien ne fonctionne plus",
+      invalidBody: "Les liens de confirmation ne servent qu’une fois et expirent au bout d’une heure. Si tu as déjà confirmé, connecte-toi simplement. Sinon, demande un nouveau lien :",
+      step1: "Ouvre l’app Pickle.",
+      step2: "Appuie sur « Renvoyer l’e-mail » dans l’encadré de l’écran d’accueil, ou essaie de te connecter.",
+      step3: "Ouvre le nouveau lien reçu par e-mail.",
+      footer: "Pickle · Confirmer l’e-mail",
+    },
+    it: {
+      title: "Pickle · Conferma email",
+      confirmTitle: "Ci siamo quasi!",
+      confirmBody: "Tocca il pulsante per attivare il tuo account Pickle.",
+      confirm: "Attiva il mio account",
+      errorNetwork: "Nessuna connessione. Controlla internet e riprova.",
+      errorRateLimit: "Troppi tentativi. Aspetta un attimo e riprova.",
+      doneTitle: "Il tuo account è attivo!",
+      doneBody: "Torna nell’app Pickle e accedi con la tua email e la tua password. Sondaggi, gruppi e karma sono sbloccati.",
+      doneClose: "Puoi chiudere questa pagina.",
+      invalidTitle: "Questo link non funziona più",
+      invalidBody: "I link di conferma valgono una sola volta e scadono dopo un’ora. Se hai già confermato, accedi e basta. Altrimenti richiedi un nuovo link:",
+      step1: "Apri l’app Pickle.",
+      step2: "Tocca “Invia di nuovo l’email” nel riquadro della schermata iniziale, oppure prova ad accedere.",
+      step3: "Apri il nuovo link dell’email.",
+      footer: "Pickle · Conferma email",
+    },
+    es: {
+      title: "Pickle · Confirmar correo",
+      confirmTitle: "¡Ya casi está!",
+      confirmBody: "Toca el botón para activar tu cuenta de Pickle.",
+      confirm: "Activar mi cuenta",
+      errorNetwork: "Sin conexión. Revisa tu internet e inténtalo de nuevo.",
+      errorRateLimit: "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+      doneTitle: "¡Tu cuenta está activa!",
+      doneBody: "Vuelve a la app de Pickle e inicia sesión con tu correo y tu contraseña. Encuestas, grupos y karma ya están desbloqueados.",
+      doneClose: "Ya puedes cerrar esta página.",
+      invalidTitle: "Este enlace ya no funciona",
+      invalidBody: "Los enlaces de confirmación solo sirven una vez y caducan en una hora. Si ya confirmaste, simplemente inicia sesión. Si no, pide un enlace nuevo:",
+      step1: "Abre la app de Pickle.",
+      step2: "Toca “Reenviar correo” en el recuadro de la pantalla de inicio, o intenta iniciar sesión.",
+      step3: "Abre el nuevo enlace del correo.",
+      footer: "Pickle · Confirmar correo",
+    },
+    pt: {
+      title: "Pickle · Confirmar e-mail",
+      confirmTitle: "Quase lá!",
+      confirmBody: "Toque no botão para ativar sua conta Pickle.",
+      confirm: "Ativar minha conta",
+      errorNetwork: "Sem conexão. Verifique sua internet e tente de novo.",
+      errorRateLimit: "Tentativas demais. Espere um pouco e tente de novo.",
+      doneTitle: "Sua conta está ativa!",
+      doneBody: "Volte ao app Pickle e entre com seu e-mail e sua senha. Enquetes, grupos e karma estão liberados.",
+      doneClose: "Você já pode fechar esta página.",
+      invalidTitle: "Este link não funciona mais",
+      invalidBody: "Links de confirmação só funcionam uma vez e expiram em uma hora. Se você já confirmou, é só entrar. Senão, peça um link novo:",
+      step1: "Abra o app Pickle.",
+      step2: "Toque em “Reenviar e-mail” no quadro da tela inicial, ou tente entrar.",
+      step3: "Abra o novo link do e-mail.",
+      footer: "Pickle · Confirmar e-mail",
+    },
   };
 
-  // ---- Language: ?lang=de|en overrides the browser language (handy for support and tests).
+  // ---- Language: ?lang=de|en|fr|it|es|pt overrides the browser language (handy for support and tests).
   const query = new URLSearchParams(location.search);
   const fragment = new URLSearchParams(location.hash.replace(/^#/, ''));
   const requested = (query.get('lang') || navigator.language || 'en').toLowerCase();
-  const lang = requested.startsWith('de') ? 'de' : 'en';
+  const lang = Object.keys(STRINGS).find((code) => requested.startsWith(code)) || 'en';
   const t = STRINGS[lang];
   document.documentElement.lang = lang;
   document.title = t.title;
