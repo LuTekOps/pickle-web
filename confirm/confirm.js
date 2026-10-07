@@ -13,6 +13,18 @@
 (() => {
   'use strict';
 
+  // Clickjacking guard: the page must never run inside another site's frame (a meta CSP cannot set
+  // frame-ancestors, and GitHub Pages sends no X-Frame-Options). Hide everything and try to break out.
+  if (window.top !== window.self) {
+    document.documentElement.style.display = 'none';
+    try {
+      window.top.location = window.self.location.href;
+    } catch (e) {
+      // Sandboxed or cross-origin frame without navigation rights: the page simply stays hidden.
+    }
+    return;
+  }
+
   // Public by design (the same anon key ships in the app); access control lives in RLS.
   const SUPABASE_URL = 'https://glebczptvyoojznohtsc.supabase.co';
   const SUPABASE_ANON_KEY =
