@@ -1,6 +1,8 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.pickle.app",
@@ -10,12 +12,15 @@
     }
   },
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.pickle.app.debug",
       "sha256_cert_fingerprints": [
-        "1D:F8:2D:31:C5:26:44:6A:2C:B7:C8:EF:E8:0D:B7:53:68:66:E1:8D:9B:82:5D:BB:16:EE:24:DD:B1:4F:71:CD"
+        "1D:F8:2D:31:C5:26:44:6A:2C:B7:C8:EF:E8:0D:B7:53:68:66:E1:8D:9B:82:5D:BB:16:EE:24:DD:B1:4F:71:CD",
+        "7A:B8:B8:85:61:14:AA:A1:1F:EA:E7:B8:74:BE:99:4B:04:96:B1:B8:FD:B6:FC:D4:1D:07:BE:0F:71:B2:7B:2E"
       ]
     }
   }
