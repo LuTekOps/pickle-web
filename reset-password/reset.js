@@ -32,7 +32,9 @@
   const SUPABASE_URL = 'https://glebczptvyoojznohtsc.supabase.co';
   const SUPABASE_ANON_KEY =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsZWJjenB0dnlvb2p6bm9odHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MzIwMjQsImV4cCI6MjEwNDIwODAyNH0.BGpBfEiayPSc5xAj8LYw-cqEZcRqIB4GFLYE6vGGS90';
-  const MIN_PASSWORD_LENGTH = 8; // = PasswordRules.MIN_LENGTH in the app
+  // = PasswordRules in the app and password_requirements = "letters_digits" in Supabase (ASCII letters).
+  const MIN_PASSWORD_LENGTH = 8;
+  const isStrongEnough = (pw) => pw.length >= MIN_PASSWORD_LENGTH && /[A-Za-z]/.test(pw) && /[0-9]/.test(pw);
 
   const STRINGS = {
     en: {
@@ -41,13 +43,13 @@
       formBody: "Pick something you'll remember this time.",
       newPassword: 'New password',
       repeatPassword: 'Repeat new password',
-      minLength: 'At least 8 characters',
+      minLength: 'At least 8 characters, with letters and numbers',
       showPassword: 'Show password',
       hidePassword: 'Hide password',
       save: 'Save new password',
-      errorTooShort: 'At least 8 characters',
+      errorTooShort: 'At least 8 characters, with letters and numbers',
       errorMismatch: "The passwords don't match",
-      errorWeak: 'Please choose a stronger password.',
+      errorWeak: "This password is too weak or has shown up in a data leak. Please choose another one.",
       errorSame: 'Your new password must be different from the old one.',
       errorNetwork: 'No connection. Check your internet and try again.',
       errorRateLimit: 'Too many attempts. Please wait a moment and try again.',
@@ -68,13 +70,13 @@
       formBody: 'Nimm diesmal eins, das du dir merken kannst.',
       newPassword: 'Neues Passwort',
       repeatPassword: 'Neues Passwort wiederholen',
-      minLength: 'Mindestens 8 Zeichen',
+      minLength: 'Mindestens 8 Zeichen, mit Buchstaben und Zahlen',
       showPassword: 'Passwort anzeigen',
       hidePassword: 'Passwort verbergen',
       save: 'Neues Passwort speichern',
-      errorTooShort: 'Mindestens 8 Zeichen',
+      errorTooShort: 'Mindestens 8 Zeichen, mit Buchstaben und Zahlen',
       errorMismatch: 'Die Passwörter stimmen nicht überein',
-      errorWeak: 'Bitte wähl ein sichereres Passwort.',
+      errorWeak: "Dieses Passwort ist zu schwach oder tauchte schon in einem Datenleck auf. Bitte wähl ein anderes.",
       errorSame: 'Dein neues Passwort muss sich vom alten unterscheiden.',
       errorNetwork: 'Keine Verbindung. Prüf dein Internet und versuch es nochmal.',
       errorRateLimit: 'Zu viele Versuche. Warte kurz und versuch es dann nochmal.',
@@ -95,13 +97,13 @@
       formBody: "Prends-en un dont tu te souviendras cette fois.",
       newPassword: "Nouveau mot de passe",
       repeatPassword: "Répète le nouveau mot de passe",
-      minLength: "Au moins 8 caractères",
+      minLength: "Au moins 8 caractères, avec des lettres et des chiffres",
       showPassword: "Afficher le mot de passe",
       hidePassword: "Masquer le mot de passe",
       save: "Enregistrer le mot de passe",
-      errorTooShort: "Au moins 8 caractères",
+      errorTooShort: "Au moins 8 caractères, avec des lettres et des chiffres",
       errorMismatch: "Les mots de passe ne correspondent pas",
-      errorWeak: "Choisis un mot de passe plus solide.",
+      errorWeak: "Ce mot de passe est trop faible ou a déjà fuité. Choisis-en un autre.",
       errorSame: "Ton nouveau mot de passe doit être différent de l’ancien.",
       errorNetwork: "Pas de connexion. Vérifie ton internet et réessaie.",
       errorRateLimit: "Trop de tentatives. Attends un instant et réessaie.",
@@ -122,13 +124,13 @@
       formBody: "Stavolta prendine una che ti ricordi.",
       newPassword: "Nuova password",
       repeatPassword: "Ripeti la nuova password",
-      minLength: "Almeno 8 caratteri",
+      minLength: "Almeno 8 caratteri, con lettere e numeri",
       showPassword: "Mostra password",
       hidePassword: "Nascondi password",
       save: "Salva la nuova password",
-      errorTooShort: "Almeno 8 caratteri",
+      errorTooShort: "Almeno 8 caratteri, con lettere e numeri",
       errorMismatch: "Le password non coincidono",
-      errorWeak: "Scegli una password più sicura.",
+      errorWeak: "Questa password è troppo debole o è già comparsa in una fuga di dati. Scegline un'altra.",
       errorSame: "La nuova password deve essere diversa da quella vecchia.",
       errorNetwork: "Nessuna connessione. Controlla internet e riprova.",
       errorRateLimit: "Troppi tentativi. Aspetta un attimo e riprova.",
@@ -149,13 +151,13 @@
       formBody: "Esta vez elige una que puedas recordar.",
       newPassword: "Contraseña nueva",
       repeatPassword: "Repite la contraseña nueva",
-      minLength: "Al menos 8 caracteres",
+      minLength: "Al menos 8 caracteres, con letras y números",
       showPassword: "Mostrar contraseña",
       hidePassword: "Ocultar contraseña",
       save: "Guardar contraseña nueva",
-      errorTooShort: "Al menos 8 caracteres",
+      errorTooShort: "Al menos 8 caracteres, con letras y números",
       errorMismatch: "Las contraseñas no coinciden",
-      errorWeak: "Elige una contraseña más segura.",
+      errorWeak: "Esta contraseña es demasiado débil o ya apareció en una filtración. Elige otra.",
       errorSame: "Tu contraseña nueva debe ser distinta de la anterior.",
       errorNetwork: "Sin conexión. Revisa tu internet e inténtalo de nuevo.",
       errorRateLimit: "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
@@ -176,13 +178,13 @@
       formBody: "Desta vez, escolha uma que você vá lembrar.",
       newPassword: "Nova senha",
       repeatPassword: "Repita a nova senha",
-      minLength: "Pelo menos 8 caracteres",
+      minLength: "Pelo menos 8 caracteres, com letras e números",
       showPassword: "Mostrar senha",
       hidePassword: "Ocultar senha",
       save: "Salvar nova senha",
-      errorTooShort: "Pelo menos 8 caracteres",
+      errorTooShort: "Pelo menos 8 caracteres, com letras e números",
       errorMismatch: "As senhas não coincidem",
-      errorWeak: "Escolha uma senha mais forte.",
+      errorWeak: "Esta senha é fraca demais ou já apareceu em um vazamento de dados. Escolha outra.",
       errorSame: "A nova senha precisa ser diferente da antiga.",
       errorNetwork: "Sem conexão. Verifique sua internet e tente de novo.",
       errorRateLimit: "Tentativas demais. Espere um pouco e tente de novo.",
@@ -312,7 +314,7 @@
     event.preventDefault();
     setFormError(null);
     const pw = password.value;
-    if (pw.length < MIN_PASSWORD_LENGTH) {
+    if (!isStrongEnough(pw)) {
       setFieldError('field-password', 'password-hint', t.errorTooShort);
       password.focus();
       return;
