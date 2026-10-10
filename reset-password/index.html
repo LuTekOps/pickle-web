@@ -8,37 +8,19 @@
   <meta name="robots" content="noindex, nofollow">
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src https://glebczptvyoojznohtsc.supabase.co; base-uri 'none'; form-action 'none'">
-  <meta name="theme-color" content="#33802a">
-  <title>Pickle · Reset password</title>
-  <link rel="stylesheet" href="../assets/pickle.css">
+  <meta name="theme-color" content="#0f172a">
+  <title>Picker · Reset password</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/picker.css">
 </head>
 <body>
 <main>
   <div class="brand" aria-hidden="true">
-    <svg viewBox="34 16.5 40 71"><use href="#pickle"/></svg>
-    Pickle
+    <svg class="mark" viewBox="0 0 68 68"><defs><linearGradient id="pk-s" gradientUnits="userSpaceOnUse" x1="34.5" y1="40.5" x2="64.5" y2="10.5"><stop offset="0" stop-color="#10B981"/><stop offset="1" stop-color="#F43F5E"/></linearGradient></defs><g class="glow"><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-s)" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-s)" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/></g><g class="trace"><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-s)" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="28.5" r="4" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="60.5" cy="54.5" r="4" fill="none" stroke="#F43F5E" stroke-width="3"/><circle cx="34.5" cy="40.5" r="3.2" fill="#FFFFFF"/></g></svg>
+    Picker
   </div>
 
-  <svg id="mascot" class="mascot" viewBox="30 14 52 76" role="img" aria-hidden="true">
-    <defs>
-      <g id="pickle">
-        <path d="M50.5,25.5 Q53,17.5 58,19 Q57,22 57.5,25.5 Z" fill="#558b2f"/>
-        <path d="M54,24 C64.5,24 70.5,32 69.5,44 L67.5,68 C66.5,80 60.5,85.5 53.5,85.5 C45,85.5 39.5,79.5 39.5,68 L38.5,44 C37.5,32 43.5,24 54,24 Z" fill="#7cb342" stroke="#2e5a1b" stroke-width="2.4"/>
-        <path d="M44,36 C44,31 47,28.5 51,28" fill="none" stroke="#c5e1a5" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M41.9,62 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0 Z M62.9,40 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0 Z M61.4,66 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0 Z M44.6,75 a1.4,1.4 0 1,0 2.8,0 a1.4,1.4 0 1,0 -2.8,0 Z M56.6,78 a1.4,1.4 0 1,0 2.8,0 a1.4,1.4 0 1,0 -2.8,0 Z M41.7,49 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0 Z" fill="#558b2f"/>
-        <path d="M43.5,47 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z M55,47 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z" fill="#fff" stroke="#2e5a1b" stroke-width="1.2"/>
-        <path d="M47.7,45.2 a2.3,2.3 0 1,0 4.6,0 a2.3,2.3 0 1,0 -4.6,0 Z M59.2,45.2 a2.3,2.3 0 1,0 4.6,0 a2.3,2.3 0 1,0 -4.6,0 Z" fill="#1b2a12"/>
-        <path d="M44.5,39.5 Q48.5,37 52.5,39 M56,36.5 Q60,33.5 64,35.5" fill="none" stroke="#2e5a1b" stroke-width="1.8" stroke-linecap="round"/>
-      </g>
-    </defs>
-    <use href="#pickle"/>
-    <path id="mouth-happy" d="M49.5,58 Q55,62.5 60.5,57" fill="none" stroke="#2e5a1b" stroke-width="2" stroke-linecap="round"/>
-    <path id="mouth-sad" d="M49.5,61 Q55,56.5 60.5,61" fill="none" stroke="#2e5a1b" stroke-width="2" stroke-linecap="round" hidden/>
-    <g id="badge" hidden>
-      <circle cx="69" cy="76" r="9.5" fill="#fff" stroke="#2e5a1b" stroke-width="1.6"/>
-      <path d="M64.2,76.3 L67.8,79.8 L74,72.6" fill="none" stroke="#2e7d32" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-  </svg>
+  <svg class="mark mark-lg" viewBox="0 0 68 68" id="mark" data-state="idle" role="img" aria-hidden="true"><defs><linearGradient id="pk-l" gradientUnits="userSpaceOnUse" x1="34.5" y1="40.5" x2="64.5" y2="10.5"><stop offset="0" stop-color="#10B981"/><stop offset="1" stop-color="#F43F5E"/></linearGradient></defs><g class="glow"><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-l)" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-l)" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/></g><g class="trace"><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-l)" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="28.5" r="4" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="60.5" cy="54.5" r="4" fill="none" stroke="#F43F5E" stroke-width="3"/><circle cx="34.5" cy="40.5" r="3.2" fill="#FFFFFF"/></g><g class="check"><circle cx="12" cy="56" r="10" fill="#10B981"/><path d="M7.5 56.3 L10.8 59.6 L16.8 52.8" fill="none" stroke="#0F172A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
 
   <!-- 1. Form -->
   <section id="view-form" hidden>
@@ -80,14 +62,14 @@
     <h1 data-i18n="invalidTitle">This link doesn't work anymore</h1>
     <p data-i18n="invalidBody">Reset links can only be used once and expire after one hour. No worries, just request a new one:</p>
     <ol class="steps">
-      <li data-i18n="step1">Open the Pickle app.</li>
+      <li data-i18n="step1">Open the Picker app.</li>
       <li data-i18n="step2">Tap “Sign in”, then “Forgot password?”.</li>
       <li data-i18n="step3">Enter your email and open the new link from the email.</li>
     </ol>
   </section>
 
   <noscript><p>Please enable JavaScript to reset your password. / Bitte aktiviere JavaScript, um dein Passwort zurückzusetzen.</p></noscript>
-  <p class="footer" data-i18n="footer">Pickle · Password reset</p>
+  <p class="footer" data-i18n="footer">Picker · Password reset</p>
 </main>
 <script src="reset.js"></script>
 </body>

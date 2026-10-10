@@ -5,18 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; base-uri 'none'">
-  <meta name="theme-color" content="#33802a">
-  <title>Pickle</title>
-  <link rel="stylesheet" href="assets/pickle.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'">
+  <meta name="theme-color" content="#0f172a">
+  <title>Picker – Smart Decisions</title>
+  <meta name="description" content="Many options. One pick. Ask the people you trust and get a clear answer in seconds.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Picker">
+  <meta property="og:title" content="Picker – Smart Decisions">
+  <meta property="og:description" content="Many options. One pick. Ask the people you trust and get a clear answer in seconds.">
+  <meta property="og:image" content="https://picker.lutekops.ch/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/picker.css">
 </head>
 <body>
-<!-- Landing page for Supabase's site_url (fallback redirect target). Static, no script: any
-     tokens in the URL fragment are never read or sent anywhere. -->
-<main>
-  <h1>Hi from Pickle!</h1>
-  <p>Can't decide? Ask your friends and get answers in seconds. Open the Pickle app on your phone to continue.</p>
-  <p lang="de">Du kannst dich nicht entscheiden? Frag deine Freunde und hab in Sekunden eine Antwort. Öffne die Pickle-App auf deinem Handy, um weiterzumachen.</p>
+<!-- Landing page, also Supabase's site_url (fallback redirect target). Static, no script: any
+     tokens in the URL fragment are never read or sent anywhere. Play badge follows once the app is live. -->
+<main class="hero">
+  <div class="brand" aria-hidden="true">
+    <svg class="mark" viewBox="0 0 68 68"><defs><linearGradient id="pk-s" gradientUnits="userSpaceOnUse" x1="34.5" y1="40.5" x2="64.5" y2="10.5"><stop offset="0" stop-color="#10B981"/><stop offset="1" stop-color="#F43F5E"/></linearGradient></defs><g class="glow"><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-s)" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="12" stroke-opacity="0.07" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-s)" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="8" stroke-opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/></g><g class="trace"><path d="M10.5 28.5 L22.5 28.5 L34.5 40.5" stroke="#10B981" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M56.5 54.5 L44.5 54.5 L34.5 44.5 L34.5 40.5" stroke="#F43F5E" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.5 40.5 L64.5 10.5" stroke="url(#pk-s)" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.5 10.5 L64.5 10.5 L64.5 28.5" stroke="#F43F5E" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="28.5" r="4" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="60.5" cy="54.5" r="4" fill="none" stroke="#F43F5E" stroke-width="3"/><circle cx="34.5" cy="40.5" r="3.2" fill="#FFFFFF"/></g></svg>
+    Picker
+  </div>
+
+  <p class="tagline">Smart Decisions</p>
+  <h1>Many options. One pick.</h1>
+  <p class="motto">Ask the people you trust and get a clear answer in seconds.</p>
+  <div class="card demo" aria-label="Example poll: Pizza 62 percent, Sushi 38 percent">
+    <p class="demo-question">Pizza or sushi tonight?</p>
+    <div class="option"><span class="badge badge-a">A</span><span class="option-label">Pizza</span><span class="pct">62%</span></div>
+    <div class="option"><span class="badge badge-b">B</span><span class="option-label">Sushi</span><span class="pct">38%</span></div>
+    <div class="tug" aria-hidden="true"><span class="tug-a"></span><span class="tug-b"></span></div>
+  </div>
+  <p lang="de">Frag die Leute, denen du vertraust, und hab in Sekunden eine klare Antwort. Picker gibt es bald für Android. Hast du die App schon, öffne sie auf deinem Handy, um weiterzumachen.</p>
+  <p>Picker is coming soon to Android. Already have the app? Open it on your phone to continue.</p>
   <p class="footer"><a href="privacy/">Datenschutzerklärung · Privacy Policy</a> · <a href="terms/">Nutzungsbedingungen · Terms of Use</a></p>
 </main>
 </body>

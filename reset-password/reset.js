@@ -1,4 +1,4 @@
-// Pickle password reset page.
+// Picker password reset page.
 //
 // Two kinds of links arrive here:
 // - Default Supabase email (free tier without custom SMTP, templates cannot be changed): the link goes
@@ -38,7 +38,7 @@
 
   const STRINGS = {
     en: {
-      title: 'Pickle · Reset password',
+      title: 'Picker · Reset password',
       formTitle: 'Set a new password',
       formBody: "Pick something you'll remember this time.",
       newPassword: 'New password',
@@ -59,13 +59,13 @@
       doneClose: 'You can close this page.',
       invalidTitle: "This link doesn't work anymore",
       invalidBody: 'Reset links can only be used once and expire after one hour. No worries, just request a new one:',
-      step1: 'Open the Pickle app.',
+      step1: 'Open the Picker app.',
       step2: 'Tap “Sign in”, then “Forgot password?”.',
       step3: 'Enter your email and open the new link from the email.',
-      footer: 'Pickle · Password reset',
+      footer: 'Picker · Password reset',
     },
     de: {
-      title: 'Pickle · Passwort zurücksetzen',
+      title: 'Picker · Passwort zurücksetzen',
       formTitle: 'Neues Passwort festlegen',
       formBody: 'Nimm diesmal eins, das du dir merken kannst.',
       newPassword: 'Neues Passwort',
@@ -86,13 +86,13 @@
       doneClose: 'Du kannst diese Seite jetzt schließen.',
       invalidTitle: 'Dieser Link funktioniert nicht mehr',
       invalidBody: 'Links zum Zurücksetzen gelten nur einmal und laufen nach einer Stunde ab. Kein Problem, fordere einfach einen neuen an:',
-      step1: 'Öffne die Pickle-App.',
+      step1: 'Öffne die Picker-App.',
       step2: 'Tippe auf „Anmelden“ und dann auf „Passwort vergessen?“.',
       step3: 'Gib deine E-Mail ein und öffne den neuen Link aus der E-Mail.',
-      footer: 'Pickle · Passwort zurücksetzen',
+      footer: 'Picker · Passwort zurücksetzen',
     },
     fr: {
-      title: "Pickle · Réinitialiser le mot de passe",
+      title: "Picker · Réinitialiser le mot de passe",
       formTitle: "Choisis un nouveau mot de passe",
       formBody: "Prends-en un dont tu te souviendras cette fois.",
       newPassword: "Nouveau mot de passe",
@@ -113,13 +113,13 @@
       doneClose: "Tu peux fermer cette page.",
       invalidTitle: "Ce lien ne fonctionne plus",
       invalidBody: "Les liens de réinitialisation ne servent qu’une fois et expirent au bout d’une heure. Pas de souci, demande-en un nouveau :",
-      step1: "Ouvre l’app Pickle.",
+      step1: "Ouvre l’app Picker.",
       step2: "Appuie sur « Se connecter », puis sur « Mot de passe oublié ? ».",
       step3: "Saisis ton e-mail et ouvre le nouveau lien reçu.",
-      footer: "Pickle · Réinitialiser le mot de passe",
+      footer: "Picker · Réinitialiser le mot de passe",
     },
     it: {
-      title: "Pickle · Reimposta password",
+      title: "Picker · Reimposta password",
       formTitle: "Scegli una nuova password",
       formBody: "Stavolta prendine una che ti ricordi.",
       newPassword: "Nuova password",
@@ -140,13 +140,13 @@
       doneClose: "Puoi chiudere questa pagina.",
       invalidTitle: "Questo link non funziona più",
       invalidBody: "I link per reimpostare la password valgono una sola volta e scadono dopo un’ora. Nessun problema, richiedine uno nuovo:",
-      step1: "Apri l’app Pickle.",
+      step1: "Apri l’app Picker.",
       step2: "Tocca “Accedi” e poi “Password dimenticata?”.",
       step3: "Inserisci la tua email e apri il nuovo link ricevuto.",
-      footer: "Pickle · Reimposta password",
+      footer: "Picker · Reimposta password",
     },
     es: {
-      title: "Pickle · Restablecer contraseña",
+      title: "Picker · Restablecer contraseña",
       formTitle: "Elige una contraseña nueva",
       formBody: "Esta vez elige una que puedas recordar.",
       newPassword: "Contraseña nueva",
@@ -167,13 +167,13 @@
       doneClose: "Ya puedes cerrar esta página.",
       invalidTitle: "Este enlace ya no funciona",
       invalidBody: "Los enlaces para restablecer solo sirven una vez y caducan en una hora. Tranquilo, pide uno nuevo:",
-      step1: "Abre la app de Pickle.",
+      step1: "Abre la app de Picker.",
       step2: "Toca “Iniciar sesión” y luego “¿Olvidaste tu contraseña?”.",
       step3: "Escribe tu correo y abre el nuevo enlace que recibas.",
-      footer: "Pickle · Restablecer contraseña",
+      footer: "Picker · Restablecer contraseña",
     },
     pt: {
-      title: "Pickle · Redefinir senha",
+      title: "Picker · Redefinir senha",
       formTitle: "Defina uma nova senha",
       formBody: "Desta vez, escolha uma que você vá lembrar.",
       newPassword: "Nova senha",
@@ -194,10 +194,10 @@
       doneClose: "Você já pode fechar esta página.",
       invalidTitle: "Este link não funciona mais",
       invalidBody: "Links de redefinição só funcionam uma vez e expiram em uma hora. Sem problema, peça um novo:",
-      step1: "Abra o app Pickle.",
+      step1: "Abra o app Picker.",
       step2: "Toque em “Entrar” e depois em “Esqueceu a senha?”.",
       step3: "Digite seu e-mail e abra o novo link recebido.",
-      footer: "Pickle · Redefinir senha",
+      footer: "Picker · Redefinir senha",
     },
   };
 
@@ -230,11 +230,8 @@
   const views = ['view-form', 'view-done', 'view-invalid'];
   function show(view) {
     views.forEach((v) => { $(v).hidden = v !== view; });
-    const mascot = $('mascot');
-    mascot.classList.toggle('sad', view === 'view-invalid');
-    $('mouth-happy').toggleAttribute('hidden', view === 'view-invalid');
-    $('mouth-sad').toggleAttribute('hidden', view !== 'view-invalid');
-    $('badge').toggleAttribute('hidden', view !== 'view-done');
+    // The mark: a check when done, faded when the link is dead.
+    $('mark').dataset.state = view === 'view-done' ? 'done' : view === 'view-invalid' ? 'invalid' : 'idle';
     const heading = $(view).querySelector('h1');
     if (heading && view !== 'view-form') { heading.tabIndex = -1; heading.focus(); }
   }
