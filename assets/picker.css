@@ -1,0 +1,282 @@
+/* Picker web pages ("Precision Pop"): same tokens as the app theme (ui/theme/Color.kt). Dark is the default. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("fonts/plus-jakarta-sans.woff2") format("woff2");
+  font-weight: 500 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  /* Palette (Tailwind Slate + Emerald + Rose, like Palette in Color.kt) */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --mint-100: #d1fae5;
+  --mint-500: #10b981;
+  --mint-700: #047857;
+  --mint-900: #064e3b;
+  --coral-500: #f43f5e;
+  --coral-700: #be123c;
+  --red-100: #fee2e2;
+  --red-400: #f87171;
+  --red-600: #dc2626;
+  --red-900: #7f1d1d;
+  --white: #ffffff;
+
+  /* Roles (dark scheme) */
+  --bg: var(--slate-900);
+  --surface: var(--slate-800);
+  --text: var(--white);
+  --text-muted: var(--slate-400);
+  --outline: var(--slate-700);
+  --primary: var(--mint-500);
+  --on-primary: var(--slate-900);   /* "ink on neon" */
+  --secondary: var(--coral-500);
+  --on-secondary: var(--slate-900);
+  --ink: var(--slate-900);
+  --error: var(--red-400);
+  --error-container: var(--red-900);
+  --on-error-container: var(--red-100);
+  --focus: var(--mint-500);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: var(--slate-50);
+    --surface: var(--white);
+    --text: var(--slate-900);
+    --text-muted: var(--slate-600);
+    --outline: var(--slate-200);
+    --primary: var(--mint-700);
+    --on-primary: var(--white);
+    --secondary: var(--coral-700);
+    --on-secondary: var(--white);
+    --error: var(--red-600);
+    --error-container: var(--red-100);
+    --on-error-container: var(--red-900);
+    --focus: var(--mint-700);
+    color-scheme: light;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 40px 16px 48px;
+}
+
+/* Wordmark: the mark plus "Picker" in Plus Jakarta Sans. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+.brand .mark { width: 30px; height: 30px; }
+
+/* The Circuit mark: two traces (A mint, B coral) meet in one junction and leave as one arrow. */
+.mark { display: block; overflow: visible; }
+.mark .glow { opacity: 1; }
+.mark-lg { width: 96px; height: 96px; margin: 8px 0 20px; }
+.mark-lg .glow { animation: glow 2.4s ease-in-out infinite; }
+.mark .check { opacity: 0; transform: scale(.4); transform-origin: 12px 56px; transition: opacity .2s, transform .2s cubic-bezier(.2, .9, .3, 1.2); }
+.mark[data-state="done"] .check { opacity: 1; transform: none; }
+.mark[data-state="invalid"] .trace, .mark[data-state="invalid"] .glow { filter: grayscale(1); opacity: .45; animation: none; }
+@keyframes glow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .mark-lg .glow { animation: none; }
+  .mark .check { transition: none; }
+}
+
+h1 {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+p { margin: 0 0 16px; color: var(--text-muted); }
+p strong { color: var(--text); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+form { margin-top: 24px; display: grid; gap: 16px; }
+
+.field label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 6px 4px;
+}
+.input-wrap { position: relative; }
+.field input {
+  width: 100%;
+  font: inherit;
+  font-size: 17px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 12px;
+  padding: 15px 56px 15px 16px;
+  outline: none;
+}
+.field input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent); }
+.field.invalid input { border-color: var(--error); }
+.field .hint { font-size: 13px; margin: 6px 0 0 16px; color: var(--text-muted); }
+.field.invalid .hint { color: var(--error); }
+
+.toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.toggle:focus-visible { outline: 2px solid var(--focus); }
+.toggle svg { width: 22px; height: 22px; }
+
+.button {
+  appearance: none;
+  border: 0;
+  width: 100%;
+  min-height: 56px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform .12s, filter .12s;
+}
+.button:hover { filter: brightness(1.08); }
+.button:active { transform: scale(.97); }
+.button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.button[disabled] { opacity: .7; cursor: progress; }
+@media (prefers-reduced-motion: reduce) { .button { transition: none; } .button:active { transform: none; } }
+.spinner {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2.5px solid currentColor; border-right-color: transparent;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.alert {
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: var(--error-container);
+  color: var(--on-error-container);
+  font-size: 15px;
+}
+
+.steps {
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 16px;
+  padding: 16px 20px 16px 40px;
+  margin: 8px 0 0;
+}
+.steps li { margin: 4px 0; }
+
+.footer { margin-top: 40px; font-size: 13px; color: var(--text-muted); }
+.footer a, .legal a { color: var(--primary); }
+
+/* Landing page (index.html, 404.html) */
+.hero { text-align: left; }
+.tagline {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 6px;
+}
+.motto { font-size: 19px; color: var(--text); margin: 0 0 24px; }
+
+/* A/B example: option badges (never color alone) and a tug bar with tabular numbers. */
+.demo { margin: 8px 0 28px; display: grid; gap: 12px; }
+.demo-question { font-weight: 600; color: var(--text); margin: 0; }
+.option { display: flex; align-items: center; gap: 12px; }
+.badge {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: grid; place-items: center;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-weight: 800; font-size: 14px;
+  color: var(--ink);
+}
+.badge-a { background: var(--mint-500); }
+.badge-b { background: var(--coral-500); }
+.option-label { flex: 1; }
+.pct { font-variant-numeric: tabular-nums; font-weight: 700; }
+.tug { display: flex; height: 14px; border-radius: 999px; overflow: hidden; gap: 2px; }
+.tug-a { background: var(--mint-500); flex: 62; }
+.tug-b { background: var(--coral-500); flex: 38; }
+
+/* Legal texts (privacy/, terms/): long reading pages, generated by scripts/generate_legal_web.py. */
+main.legal { max-width: 720px; }
+.legal .brand { margin-bottom: 12px; }
+.lang-switch { margin-bottom: 24px; font-size: 15px; }
+.legal article + article { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--outline); }
+.legal h2 { font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-weight: 700; font-size: 21px; color: var(--text); margin: 32px 0 8px; }
+.legal h3 { font-size: 17px; margin: 20px 0 6px; }
+.legal ul { margin: 0 0 16px; padding-left: 22px; color: var(--text-muted); }
+.legal li { margin: 4px 0; }
+.legal :target { scroll-margin-top: 16px; }
+
+[hidden] { display: none !important; }
+
+/* Headings focused by script (screen readers announce the new view) need no focus ring. */
+h1[tabindex="-1"]:focus { outline: none; }
+.legal a.brand { color: var(--text); text-decoration: none; }
